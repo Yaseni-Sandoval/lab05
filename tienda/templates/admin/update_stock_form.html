@@ -1,0 +1,85 @@
+{% extends "admin/base_site.html" %}
+
+{% block extrastyle %}
+<style>
+
+    #content-main {
+        display: flex;
+        justify-content: center;
+    }
+
+    .module {
+        width: 400px; 
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .form-row {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+    }
+
+    .submit-row {
+        margin-top: 20px;
+    }
+
+    .submit-row input[type="submit"],
+    .submit-row .button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .submit-row input[type="submit"]:hover,
+    .submit-row .button:hover {
+        background-color: #0056b3;
+    }
+
+    .submit-row .button {
+        background-color: #ccc;
+        color: #333;
+        margin-left: 10px;
+    }
+
+    .submit-row .button:hover {
+        background-color: #bbb;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <form method="post" action="{% url 'admin:tienda_producto_update_stock_view' %}">
+        {% csrf_token %}
+        <fieldset class="module">
+            <h2>Actualizar Stock</h2>
+            <div class="form-row">
+                <label for="id_new_stock">Nuevo Stock:</label>
+                <input id="id_new_stock" type="number" name="new_stock" required>
+            </div>
+        </fieldset>
+        <div class="submit-row">
+            <input type="submit" value="Aceptar">
+            <a href="{% url 'admin:tienda_producto_changelist' %}" class="button">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
